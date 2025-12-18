@@ -1,2 +1,4 @@
 **/node_modules/
 node_modules/
+keycloak_data/
+**/keycloak_data/
