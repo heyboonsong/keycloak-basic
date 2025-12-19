@@ -37,6 +37,6 @@ app.get('/', function (req, res) {
   res.send('<html><body><ul><li><a href="/public">Public endpoint</a></li><li><a href="/secured">Secured endpoint</a></li></ul></body></html>');
 });
 
-app.listen(3000, function () {
+app.listen(3001, function () {
   console.log('Started at port 3000');
 });
