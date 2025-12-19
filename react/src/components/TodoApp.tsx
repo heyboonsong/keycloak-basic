@@ -4,7 +4,7 @@ import type { Todo } from "../types/todo";
 import TodoList from "./TodoList";
 
 const TodoApp: React.FC = () => {
-  const { logout, userName } = useKeycloak();
+  const { logout } = useKeycloak();
   const [todos, setTodos] = useState<Todo[]>([]);
 
   useEffect(() => {
@@ -49,7 +49,7 @@ const TodoApp: React.FC = () => {
         <div className="header-content">
           <h1>My Todos</h1>
           <div className="user-info">
-            <span>Welcome, {userName}!</span>
+            <span>Welcome</span>
             <button onClick={logout} className="logout-button">
               Logout
             </button>
