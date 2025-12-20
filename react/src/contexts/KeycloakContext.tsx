@@ -5,7 +5,6 @@ import keycloak from "../config/keycloak";
 interface KeycloakContextType {
   keycloak: Keycloak | null;
   authenticated: boolean;
-  userName: string | null;
   login: () => void;
   logout: () => void;
 }
@@ -33,7 +32,6 @@ export const KeycloakProvider: React.FC<KeycloakProviderProps> = ({
     null
   );
   const [authenticated, setAuthenticated] = useState(false);
-  const [userName, setUserName] = useState<string | null>(null);
 
   useEffect(() => {
     keycloak
@@ -41,13 +39,6 @@ export const KeycloakProvider: React.FC<KeycloakProviderProps> = ({
       .then((authenticated) => {
         setKeycloakInstance(keycloak);
         setAuthenticated(authenticated);
-        if (authenticated && keycloak.tokenParsed) {
-          setUserName(
-            keycloak.tokenParsed.name ||
-              keycloak.tokenParsed.preferred_username ||
-              "User"
-          );
-        }
       })
       .catch((error) => {
         console.error("Keycloak initialization failed:", error);
@@ -71,7 +62,6 @@ export const KeycloakProvider: React.FC<KeycloakProviderProps> = ({
       value={{
         keycloak: keycloakInstance,
         authenticated,
-        userName,
         login,
         logout,
       }}
